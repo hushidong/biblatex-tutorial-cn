@@ -1,0 +1,25 @@
+\input{standardpre1.tex}
+\usepackage[style=german]{csquotes}
+\usepackage[german,english]{babel}
+\usepackage[style=footnote-dw,backend=biber]{biblatex}
+\addbibresource{biblatex-examples.bib}
+\addbibresource{bl-tutorial-eg.bib}
+\renewcommand{\showingstyle}{DW Footnote}
+
+\input{standardpre2.tex}
+The \textsf{footnote-dw} style is a style produced by Dominik Waßenhoven. It was designed for use in the humanities; and it is intended to be very highly customizable. It comes in two flavours: author/title and a verbose style, intended only for use in footnotes, shown here.
+
+The style is particularly disciplinarian about requring citations into footnotes: even \verb~\cite~ is placed in a footnote automatically (and \verb~\textcite~, although it does give the author's name in the text, also creates a footnote reference).
+
+\quad The package is loaded in the usual way. For the author/title style:
+\begin{verbatim}
+     \usepackage[style=footnote-dw]{biblatex}
+\end{verbatim}
+
+On this occasion, I display the bibliography formatted in the German language style.\selectlanguage{german}
+
+\input{standardpre3.tex}
+
+\input{standardpre4.tex}
+
+\end{document}

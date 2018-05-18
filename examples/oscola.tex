@@ -1,0 +1,21 @@
+\input{standardpre1.tex}
+\usepackage[style=british]{csquotes}
+\usepackage[style=oscola,backend=biber]{biblatex}
+\makeatletter\newtoggle{blx@firstinits}\makeatother%<- REMOVE ASAP
+\addbibresource{biblatex-examples.bib}
+\addbibresource{bl-tutorial-eg.bib}
+\usepackage[british]{babel}
+\renewcommand{\showingstyle}{OSCOLA}
+\input{standardpre2.tex}%
+The \textsf{oscola} style implements the style rules of the Oxford Standard for the Citation of Legal Materials. It is a footnote style in which  \verb~\autocite~ produces footnoted citations \autocite{worman, reese}. Although designed for legal citations (and therefore covering a wide range of non-standard sources) it is also deals with the standard types of source as well.
+
+\quad The package is loaded in the usual way:
+\begin{verbatim}
+     \usepackage[style=oscola]{biblatex}
+\end{verbatim}
+
+\input{standardpre3.tex} We also cite a judicial decision.\autocite{donoghue}
+
+\input{standardpre4.tex}
+
+\end{document}

@@ -1,0 +1,510 @@
+
+\chapter{What is \package{Biblatex}?}\label{ch:introduction}
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize Biblatex 是个什么包？
+\end{CJK}}
+
+This chapter has two different sections, intended for different
+audiences. If you are new to automated bibliography tools in \LaTeX,
+then you should read the first section.\intref{p~\pageref{newbie}} If
+you already have experience of using automated bibliography tools in
+\LaTeX, such as \bibtex\ and \package{Natbib}, then you can probably
+turn straight to the second section.\intref{p~\pageref{expert}} If you
+are prefer to jump in and start getting your hands dirty without much
+explanation, there is a quick start section at the back of this
+guide,\intref{p~\pageref{ch:quickstart}} along with an aide memoire to
+the frequently used commands and
+options.\intref{p~\pageref{ch:cheatsheet}}
+
+\section{For the true neophyte}
+
+\subsection{The basic idea}
+\label{newbie}
+\indexstart{Biblatex!very basic introduction}
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 给新手的基本概念
+\end{CJK}}
+
+Academic writing usually cites sources. 
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 学术写作需要引用来源，不同的出版商、期刊、个人的写作对于引用的形式要求都是不同的。但文献引用底下的原理是类似的。在正文或脚注等地方引用文献以标注来源，并在合适的地方常用列表的形式给出来源的详细信息。
+
+可以手动给出这些信息，但耗时、费力、容易出错，并且难以应付随时需要的改变。
+\end{CJK}}
+The exact form of these
+citations varies: different disciplines have different practices, and
+different publishers and journals too. But the underlying idea is
+similar: there are references in the text (or footnotes) that enable
+the reader to identify a source for a particular statement or
+quotation. This may be a number in a list of references (like [1]),
+or a combination of author and year (like Author 2014), or even a
+footnote which identifies the source.\footnote{Like: Author, `Paper
+  Title' in \emph{Learned Journal}, Vol.\ 10 (2014), p.\ 111.}
+Alongside this there is a bibliography: a list of all the sources
+which have been cited, which will nearly always enable the reader to
+look up the source in a library, and sometimes provide (in itself)
+useful information about the source, such as its date, or where
+and how it was published.
+
+It is, of course, possible to produce all these indications entirely
+`by hand': typing out references, bibliographies and so forth. But
+there are disadvantages to doing that:
+\begin{itemize}
+\item It is time-consuming. If you write lots of papers, you will
+  probably find yourself citing the same sources again and again. It's
+  tedious to have to keep looking up and typing out the same data. You
+  have to spend time doing things like organising your bibliography
+  into the proper order.
+\item It is error-prone. Every time you type data up, you risk making
+  a mistake: either a mistake of substance (typing `Stanely' for
+  `Stanley'), or in the way the data is formatted.
+\item It can be frustrating. Each citation system has its own picky
+  requirements. One wants the titles of articles in double quotes,
+  ``Like this''. Another wants them in single quotes, `Like
+  this'. Another wants them in italics \emph{Like this}. There are
+  specialists who revel in such details: but for the average person
+  they are just a nuisance, and it is nice to have a system which
+  takes care of these details for you.
+\item The details sometimes change as you write. For instance, if you
+  use a system where references are numbered, adding a reference may
+  change all the numbering. Or if you follow a system which uses
+  abbreviations such as `ibid', `op.\ cit.' or references back to
+  earlier notes, adding a single footnote can throw everything out. In
+  such systems it's not possible to finalise references until the
+  document is complete: and every change can easily introduce errors.
+\end{itemize}
+
+The idea of a citation system is to \emph{separate content from
+  presentation}. 
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 参考文献引用系统的逻辑是，把文献来源的重要细节比如作者、题名等放到一个数据库文件中。写作时对这些文献做一个简短的引用，然后由计算机从数据库中抽取信息，然后插入文档中。基于这种方式，作者完全可以找到并利用很多已有的文献数据库。
+\end{CJK}}  
+You record the important details about a source in a
+database file: the author(s), title, date, publisher and so forth. As
+you write, you use a short reference to indicate the work you want to
+cite at that point in your paper. And then you let the computer take
+care of extracting the information from your database, then inserting
+and formatting it into your paper. And in fact, in many fields, you
+can find existing databases which you can borrow from which will
+contain data you need.
+
+This is what \biblatex\ does. 
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 这就是 biblatex 做的事情。用户可以维护好一个数据库。然后在写作需要的时候引用其中的文献，在文档编译是，有biblatex 来获取文献的信息并格式化，最后形成引用的标注标签和文献表。
+\end{CJK}}  
+You maintain a database which contains
+the works you may want to cite. The database can be large: it needn't
+include only the works that you want to cite in a particular paper ---
+it can be as large as you like. It can be in any order. All that
+matters is that it contains the information that is needed to
+`construct' the citations.
+
+As you write your paper, you insert commands to tell \biblatex\ that
+you want to cite particular sources drawn from that database.
+
+Then, when you are done, as part of the compilation of your \LaTeX\
+source, you get \biblatex\ to extract the relevant information, format
+it, and construct the citations and bibliography in proper format.
+
+\subsection{In practice}
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 实践中需要几个工具以一定的流程来实现目标。首先至少需要两个文件一个是tex源文件（可能用include和input包含多个文件），一个是文献数据库文件（可能也有多个数据库）。
+\end{CJK}} 
+
+In practice, getting all this to happen involves a number of different
+tools and programs, which all have to work together.
+
+You are going to start with two files:\footnote{At least two, since
+  your \LaTeX\ source could \cs{include} or \cs{input} more than one
+  file, and your database may consist of more than one file too.} a
+database file and your \LaTeX\ source file.
+
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 数据库文件后缀为.bib，内容包含文献来源的详细信息，并以特定的格式（见\ref{ch:database}章）描述。它是一个普通的文本文件，可以利用任何编辑器编写，或利用一些辅助工具来维护
+（见\ref{ch:tools}章）。
+\end{CJK}} 
+The database file conventionally has the suffix \texttt{.bib}, and
+consists of a set of records containing information about the sources
+you may wish to cite. The format of such a file is described in
+chapter \ref{ch:database}. It is a plain text file, which you can
+either produce by hand (using a text editor, such as the one you use
+to write \LaTeX\ source code) or can be maintained by one of a number
+of available `helper' programs.\intref{Chapter \ref{ch:tools}}
+
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize \LaTeX\ 源文件后缀为.tex，内容为\LaTeX\ 格式的文本。为利用biblatex引用文献，包含如下内容：
+
+1. biblatex宏包加载语句
+
+2. 加载文献数据源的语句
+
+3. 引用文献的语句
+
+4. 打印文献表的语句
+\end{CJK}} 
+The \LaTeX\ source file conventionally has the suffix \texttt{.tex}
+and contains all your text, marked up in \LaTeX\ format. It also
+contains:
+\begin{itemize}
+\item A\marginnote{\cs{usepackage[style=...]\{biblatex\}}} line that
+  loads \biblatex\ and tells it what `style' to use for citations and
+  bibliography.
+\item One\marginnote{\cs{addbibresource\{file.bib\}}} or more lines
+  which tell \biblatex\ what file(s) to use as the database from which
+  information is to be extracted.
+\item One\marginnote{\cs{cite\{...\}}} or more commands which tell
+  \biblatex\ that you want to \cs{cite} a particular source at that
+  point in your text.
+\item (Usually)\marginnote{\cs{printbibliography}} one or more
+  commands that tell \biblatex\ to print a bibliography at that point
+  in the document.
+\end{itemize}
+
+The next task is to get the various tools to cooperate together to get
+to the end result that you need. 
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 下一步就是利用不同工具来配合得到需要的结果，一般需要如下步骤：
+
+1. \LaTeX\ 第一遍编译tex源文档
+
+2. 利用工具分析文献数据库，抽取数据。可以使用多种工具比如 bibtex，biber 等，对于 biblatex 主要使用 biber。
+
+3. 再次利用\LaTeX\ 编译源文档
+
+4. 有时需要多运行一次\LaTeX\ 来完善文档内的超连接
+\end{CJK}} 
+In general that requires at least the
+following things to happen:
+\begin{itemize}
+\item Run \LaTeX\ first on the source file. At this point no citations
+  are produced. Instead \biblatex\ \emph{records} a list of the
+  sources that you have cited.
+\item Run another program which reads the list that has been produced,
+  analyses the database, and extracts the relevant information into a
+  format that \biblatex\ can work with. There is a choice of programs
+  that you might use for this, but in this handbook we will be
+  assuming that you will use a program called \package{Biber}.
+\item Run \LaTeX\ again, to `read in' the data that has now been put
+  in digestible form, and produce the citations and bibliography.
+\item (Sometimes), run \LaTeX\ yet \emph{again} to finalise
+  cross-references.
+\end{itemize}
+
+This `pattern' (\LaTeX, \package{Biber}, \LaTeX, [\LaTeX]) is repeated
+whenever you need to compile your document.\footnote{Not quite true:
+  it is often unnecessary to re-run \package{Biber} if no new
+  citations have been added. But it is never wrong to do so.}
+\indexstop{Biblatex!very basic introduction}
+
+\subsection{A quick demonstration\label{neophyte:example}}
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 何不给出一个新手示例？假设读者已经安装一套tex发行版比如texlive，包含了所有编译需要的工具。下面第一步就是构建一个文献数据库文件。
+\end{CJK}} 
+Why not try a quick example? I assume for these purposes that you have
+a fully-equipped and functional \TeX\ system, and have installed the
+pre-requisites for \biblatex. This will be true on any of the standard
+modern \TeX\ installations; but it's not a bad idea to update to at
+least the most recent versions of \biblatex\ and \package{Biber},
+since both are under active development.
+
+First, let's set up our `database'. It's not going to be much: just a
+single book.
+
+Open a text editor, and produce a new file
+\texttt{handbook.bib}:\intref{Much more about how to write
+  \texttt{.bib} files is explained in chapter~\ref{ch:database}.}
+
+\begin{verbatim}
+@book{nussbaum:95,
+  author = "Nussbaum, Martha C.",
+  title = "Poetic Justice",
+  subtitle = "The Literary Imagination and Public Life",
+  publisher = "Beacon Press",
+  location = "Boston",
+  date = "1995",
+}
+\end{verbatim}
+
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 然后利用文本编辑器写出一个tex源文档。并在其中引用文献，引用的命令详见第\ref{ch:citationcommands}章。
+\end{CJK}}
+Now open a text editor or your \LaTeX\ editor, and create a small test
+file (I'll call mine \texttt{test.tex}):\intref[1.5in]{Much more about
+  \cs{cite} commands is explained in
+  chapter~\ref{ch:citationcommands}.}
+
+\begin{verbatim}
+\documentclass{article}
+\usepackage{csquotes}
+\usepackage[style=numeric]{biblatex}
+\addbibresource{handbook.bib}
+\begin{document}
+
+As Nussbaum comments \cite[17]{nussbaum:95}:
+\enquote{The utilitarian picture of human beings and
+of rationality is familiar enough in theory}.
+
+\printbibliography
+\end{document}
+\end{verbatim}
+
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 接着开始根据前面介绍的步骤进行编译，注意每一步的输出结果。
+\end{CJK}}
+Now, run \LaTeX\ on the file, once. If you look at the resulting
+typeset document, it should look something like figure
+\ref{nussbaum1}.
+
+\begin{figure}
+\fbox{\includegraphics{./examples/nussbaum1u.pdf}}
+\caption{Before running \package{Biber}}\label{nussbaum1}
+\end{figure}
+
+The reference `[\textbf{sebum:95}]' appears in square brackets
+because although \LaTeX\ can `see' that there is going to be a
+citation, it doesn't yet have the data that will enable it to
+construct that citation, since \package{Biber} has not been run.
+
+Now, from a terminal window opened in the same directory, run
+\framebox{\parbox{\linewidth}{\texttt biber test}}
+
+Hopefully, you will see a number of messages marked as `INFO', ending
+with \texttt{INFO -- Output to test.bbl}.
+
+Now run \LaTeX\ again on the source file |test.tex|. And if all is
+going well, you should now see output like figure \ref{nussbaum2}.
+
+\begin{figure}
+\fbox{\includegraphics{./examples/nussbaum2u.pdf}}
+\caption{After running \package{Biber} and \LaTeX}\label{nussbaum2}
+\end{figure}
+
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 最后可以看到，引用文献的信息已经在文献表中了。如果没有得到该结果，有可能是biber没有成功运行，这是可能在哪存在问题，可以按如下问题来检查：
+1.加入文献源了么？2.编译每一步都完成了么？3.biber结果是否提示错误？4.引用来源的时候文献的关键字是否正确？5. bib文件是否包含数据？6.bib中的文献条目是否有效？具体检查方法详见第\ref{ch:troubleshooting}章。
+\end{CJK}}
+As you can see, the citation data has been pulled into the
+bibliography. If the output remains unchanged (it looks like figure
+\ref{nussbaum1}) that is because \package{Biber} has not successfully
+run. That is \emph{probably} because there is some error in your
+|.bib| file, so go back and check that. Any time you see this, you
+should ask yourself these
+questions:\marginnote{\textit{Debugging}\\1. \cs{addbibresource}?\\2. Run
+  \LaTeX\, \package{Biber}, \LaTeX?\\3. \package{Biber} was
+  error-free?\\4. Cite key is correct?\\5. \texttt{.bib} file contains
+  source?\\6. Entry in \texttt{.bib} file valid?\\See
+  chapter~\ref{ch:troubleshooting}.} (1) have I told \biblatex\ where
+to find the bibliography file (using |\addbibresource{}|? (2) Have I
+run \LaTeX\ then \package{Biber} then \LaTeX\ again? (3) Did
+\package{Biber} report any errors? (If you like, you can check the log file at
+\angled{jobname}|.blg|) (4) Is my citation \emph{key} correct (e.g.,
+you haven't typed |nusbaum| for |nussbaum| in the \LaTeX\ source? (5)
+Does the |.bib| file include that citation? (6) Is the syntax of the
+citation correct?
+
+\subsection{What next}
+
+There is still quite a bit to learn, of course. To some extent it's up
+to you how you go from here, but the following chapters take what I
+think is a reasonably logical order.
+
+\section{For the more experienced}
+\label{expert}
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 给有经验的用户。
+\end{CJK}}
+\indexstart{Biblatex!compared to bibtex}
+
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 从用户的角度使用 biblatex 的模式类似于以前习惯的用\bibtex 加\package{Natbib}的过程。也是把文献数据放到bib文件中，然后用工具按步骤编译。但需要注意源文档中使用的命令方面的差异。
+\end{CJK}}
+From the user's perspective, the basic pattern followed by \biblatex\
+is similar to the one you will be accustomed to if you use \bibtex\
+to produce \verb|.bst| files, or citation packages such as \package{Natbib}:
+\begin{itemize}
+\item Your bibliographical data is still stored in \verb|.bib| files,
+  which have largely the same format as \bibtex\ files. (But
+  \biblatex\ recognises additional entry types and fields.)
+\item You still generate citation and bibliography data by running
+  \LaTeX\, then an external program (either \bibtex\ itself or a more
+  powerful replacement, \package{Biber}, and then \LaTeX\ again
+  (sometimes twice).
+\end{itemize}
+
+There are a few, largely cosmetic, changes to the commands that you
+need to include in your document to `set up' the bibliography. (See
+page \pageref{bibtex:simple:eg}.)
+
+\subsection{Differences}
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 两者存在的差异主要包括：
+1. 格式化文献数据的差异。biblatex用的是tex语言，而bibtex是右bibtex工具格式化。
+
+2. biblatex可以做传统方法不能做的事，比如动态修改。这意味着它更强大，更灵活。其文献数据编译程序biber也更强大，能突破bibtex的局限。
+\end{CJK}}
+So, what are the main differences?\footnote{See also \url{http://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib}}
+\begin{itemize}
+\item There is a big difference in the essential way in which
+  \biblatex\ and traditional \bibtex-based systems work. In
+  particular, in \biblatex\ the external program is used only to
+  prepare data: the formatting and output of that data is largely
+  handled using \LaTeX\ code, whereas in \bibtex, most of the
+  formatting is done by \bibtex, producing a bibliography which is
+  more-or-less ready to be typeset as it is.
+\item The practical consequence of that is that \biblatex\ can do
+  things that traditional \bibtex\ cannot: in particular it can
+  respond \emph{dynamically} to context in a way that traditional
+  \bibtex\ cannot, or cannot easily.
+\item This means that \biblatex\ can be used for citation systems
+  (such as traditional humanities-style systems) for which \bibtex\
+  alone is unsuited. It is a more powerful and flexible system.
+\item In addition, the \package{Biber} program -- which is recommended
+  to replace \bibtex\ in sorting and handling the bibliographical data
+  itself -- is more flexible and powerful than \bibtex\ is, and
+  doesn't suffer from some of the \bibtex's historical limitations.
+\end{itemize}
+\indexstop{Biblatex!compared to bibtex}
+
+You may well be asking: should I use \biblatex? Most users probably
+fall into one of three groups.
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 那么我是否要用biblatex呢？
+如果要提交一些有固定格式要求且提供bibtex样式和文档模板的文章，那么不需要使用biblatex，因为要将转到biblatex是件麻烦事。如果拥有传统的bibtex样式，并且满足需求，也没有改变的需要，那么就不需要换到biblatex。但如果你需要生成精致复杂的参考文献，需要引用非传统标准的文献，需要进行非ASC码的排序，需要使用多语言，那么就需要使用biblatex。
+\end{CJK}}
+
+Some people \emph{need} to stick with traditional \bibtex. For
+instance, if you are submitting work to a journal which has a \bibtex\
+style which it requires you to use, then you should \emph{not} switch
+to \biblatex, at least for that paper. Many journals are in just that
+position, and very few (if any) have adopted \biblatex. And if you
+frequently or sometimes need to use \bibtex, you should try to keep
+your |.bib| files compatible with it (for instance, continue to use
+|year|, |journal| and |address| rather than |date|, |journaltitle| and
+|location| fields).
+
+Some people \emph{don't need} to switch. If you have existing \bibtex\
+styles which work for you, and do everything you need, then there is
+no reason to change. You can. But you don't need to. The existing
+programs have the advantage of stability in such cases. On the other
+hand, switching will accustom you to \biblatex\ and put its more
+powerful features at your disposal. It's really a matter of
+taste. Those who don't have an existing heavy investment in \bibtex\
+should probably prefer \biblatex. But don't make such a change a week
+before you are due to submit your doctoral thesis.
+
+Some people \emph{need} \biblatex. This is probably true if you work
+in the humanities and need sophisticated and complex styles such as
+traditional footnote-based citations systems, if you want to cite
+non-standard sources, if you need to handle large volumes of non-ASCII
+characters or have complex sorting requirements, if you need to work
+in multiple languages.
+
+\subsection{The required changes}
+
+\indexstart{Biblatex!compared to bibtex}
+The main differences between using \biblatex\ and `standard' \bibtex\
+are as follows:\label{bibtex:simple:eg}
+
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 改用biblatex需要注意一下几点：
+1. 需要加载biblatex包
+2. 需要在加载时制定样式
+3. 需要用命令加载参考文献数据
+4. 需要使用biblatex自己的文献表打印命令
+5. 最重要的是要理解传统的bibtex的样式bst文件在biblatex中无法使用。要得到与标准bst样式一致的文献表，那么可以使用biblatex提供的标准样式替代。
+\end{CJK}}
+
+\begin{itemize}
+\item You need to load \biblatex\ as a package using \cs{usepackage}
+  (generally with various options). It's generally wise to load
+  \package{csquotes} as well.
+\item Instead of \cs{bibliographystyle}, you specify the style to be
+  used as an option when loading \biblatex:
+\begin{pseudoverb}\centering
+  \cs{usepackage}[style=\ldots]\{biblatex\}
+\end{pseudoverb}
+\item Instead of specifying the \verb|.bib| file as an argument to the
+  \cs{bibliography} command, you use the command
+  \cs{addbibresource\{\}} to identify the file(s). You specify the
+  file(s) to be used completely, including their \verb|.bib|
+  suffixes. So if your bibliography file is called \verb|mybib.bib|,
+  you have
+\begin{pseudoverb}
+  \centering \cs[mybib\textbf{.bib}]{addbibresource}
+\end{pseudoverb}
+\item Instead of \cs{bibliography}, you use \cs{printbibliography} at
+  the point where the bibliography should be printed.
+\end{itemize}
+
+One important point to understand: existing \bibtex\ \emph{styles}
+cannot be directly used by \biblatex.\sidenote{There is a project to
+  provide \biblatex\ styles that are identical to the standard
+  \bibtex\ ones: the \package{biblatex-trad} package. Development
+  seems to have been sporadic.}  The `standard' styles in \biblatex\
+do not precisely correspond to the standard styles in \bibtex.
+\indexstop{Biblatex!compared to bibtex}
+
+\subsection{An example}
+
+Find an existing \verb|.bib| file of your own (or, if you are pushed
+to find one, make use of a standard file such as
+\verb|biblatex-examples.bib|, which will be installed with \biblatex).
+
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 给出一个示例
+\end{CJK}}
+
+
+Try the following sample document: \clearpage
+\marginnote{\tikz[overlay]{\draw (0,-0.5em) edge [out=180, in=25,
+    -stealth] ([shift={(0.5ex,2.3ex)}] pic cs:csquote)}Although not
+  essential, \package{csquotes} should normally be loaded.}
+\marginnote[2ex]{\tikz[overlay]{\draw (0,-0.5em) edge [out=180, in=90,
+    -stealth] ([shift={(-0.5ex,2.3ex)}] pic cs:style)}Style is
+  specified when loading the package, not using
+  \cs{bibliographystyle}.}  \marginnote[0.2ex]{\tikz[overlay]{\draw
+    (0,-0.5 em) edge [out=180, in=0, -stealth] ([shift={(1.2ex,
+      +1ex)}] pic cs:resource)}Instead of identifying the
+  \texttt{.bib} files in the \cs{bibliography} command, they are
+  identified this way.}  \marginnote[0.2ex]{\tikz[overlay]{\draw
+    (0,-0.5 em) edge [out=195, in=45, -stealth] ([shift={(1.2ex,
+      +1ex)}] pic cs:printbib)}Instead of \cs{bibliography},
+  \cs{printbibliography} is used to print the reference list.}
+\begin{pseudoverb}
+\cs[article]{documentclass}\\
+\colorbox{green!30}{\cs[csquotes]{usepackage}\tikzmark{csquote}}\\
+\cs{usepackage}[backend=bibtex, \colorbox{red!30}{style=\tikzmark{style}numeric}]\{biblatex\}\\
+\colorbox{blue!25}{\cs[biblatex-examples.bib]{addbibresource}\tikzmark{resource}}\\
+\cs[document]{begin}
+
+\cs[*]{nocite}
+
+\colorbox{green!30}{\cs{printbibliography}\tikzmark{printbib}}
+
+\cs[document]{end}
+\end{pseudoverb}
+
+If you run \LaTeX, \bibtex, and \LaTeX\ again, you should find that a
+numbered bibliography is produced. Now see if you can get it to work
+with \package{Biber}. Replace line 2 with
+\begin{center}
+\cs{usepackage[backend=biber, style=numeric]\{biblatex\}}
+\end{center}
+and delete \verb|.aux|, \verb|.bbl| and \verb|.blg| files. Now run
+\LaTeX, \package{Biber} and \LaTeX\ again. You should generate the
+same document. (You might also like to try the sample document
+suggested for complete neophytes, which is at page
+\pageref{neophyte:example}.) Although \biblatex\ can use \bibtex\ to
+prepare its data, it's generally better to use \package{Biber}, which
+is a more modern program with many advantages.
+
+\subsection{The \package{Natbib} package}
+
+\index{Natbib}
+
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize \package{Natbib}宏包的问题。biblatex提供了\package{Natbib}宏包的替代方案，它提供一个\package{Natbib}模块，使用户可以无缝衔接使用类似Natbib提供的命令。但实际上最好的思路是习惯使用biblatex自身提供的命令，因为它基于样式可以灵活地定制。
+\end{CJK}}
+Many \LaTeX\ users use the \package{Natbib} package. This is a sort of
+half-way house between \bibtex\ and \biblatex. It's somewhat more
+flexible than a pure \bibtex\ solution, and has (in particular) a
+wider range of citation commands to deal with author\slash year
+citation systems. But it still uses \bibtex\ under the hood, and it
+doesn't have \biblatex's flexibility.
+
+Biblatex has a \package{Natbib} `compatibility mode'.
+If you load \biblatex\ with the option \texttt{natbib} (or
+\texttt{natbib\allowbreak =\allowbreak true}), then it will let you
+use some \package{Natbib}-like citation commands, like \cs{citet} and
+\cs{citep}. However, the compatibility is really only skin-deep;
+it hardly\footnote{It does modify the punctuation used to separate an
+author's name from the year to match the \package{Natbib} default.}
+extends beyond the citation commands, and the actual formatting of the
+citations (which will depend on the style you specify) will be
+determined by \biblatex. In general, it's probably a better idea to
+get used to the \biblatex\ citation commands.
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: LaTeX
+%%% TeX-master: "biblatex-tutorial"
+%%% End:

@@ -1,0 +1,20 @@
+\input{standardpre1.tex}
+\usepackage[style=american]{csquotes}
+\usepackage[style=ieee,backend=biber]{biblatex}
+\addbibresource{biblatex-examples.bib}
+\renewcommand{\showingstyle}{IEEE}
+
+\input{standardpre2.tex}%
+The \textsf{biblatex-ieee} style implements the style rules of the Insitute of Electrical and Electronic Engineers. It is a numeric style, in which \verb~\autocite~ produces numbered labels thus \cite{worman}. (There is a variant which produces alphabetic labels: consult the documentation.) As can be seen below, the \verb|\footcite{}| command makes no sense with it, and should be avoided.
+
+\quad The package is loaded in the usual way:
+\begin{verbatim}
+     \usepackage[style=ieee]{biblatex}
+\end{verbatim}
+I have loaded \textsf{csquotes} with the |american| style.
+
+\input{standardpre3.tex}
+
+\input{standardpre4.tex}
+
+\end{document}

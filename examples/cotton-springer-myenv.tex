@@ -1,0 +1,25 @@
+\documentclass[varwidth=4.3in, crop=true, border=5pt]{standalone}
+\pagestyle{empty}
+\usepackage{mathptmx}
+\usepackage[style=authoryear]%
+     {biblatex}
+\addbibresource{bl-tutorial-eg.bib}
+\addbibresource{biblatex-examples.bib}
+\defbibheading{noheading}[Error!]{}
+\begin{document}
+
+\defbibheading{myheading}[Works Cited]{%
+  \subsection*{#1}%
+  \addcontentsline{toc}{subsection}{#1}%
+  \markboth{#1}{#1}}
+
+\defbibenvironment{myenv}
+  {\begin{enumerate}}
+  {\end{enumerate}}
+  {\item}
+
+\nocite{paper:1,paper:2}
+
+\printbibliography[env=myenv, heading=myheading]
+
+\end{document}

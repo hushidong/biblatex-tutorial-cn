@@ -1,0 +1,15 @@
+\documentclass[varwidth=0.9\textwidth]{standalone}
+\pagestyle{empty}
+\usepackage{mathptmx}
+\usepackage[style=authoryear,sortlocale=en_GB]%
+     {biblatex}
+\addbibresource{bl-tutorial-eg.bib}
+\addbibresource{biblatex-examples.bib}
+\defbibheading{noheading}[Error!]{}
+\begin{document}
+
+\nocite{aardvark,zebra}
+
+\printbibliography[heading=none]
+
+\end{document}

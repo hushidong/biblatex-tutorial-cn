@@ -1,0 +1,24 @@
+\input{standardpre1.tex}
+\usepackage[style=american]{csquotes}
+\usepackage[american]{babel}
+\usepackage[style=mla,backend=biber]{biblatex}
+\addbibresource{biblatex-examples.bib}
+\renewcommand{\showingstyle}{MLA}
+\input{standardpre2.tex}%
+The \textsf{biblatex-mla} style implements the style rules of the Modern Language Association. It is fundamentally an author/title style in which \verb~\autocite~ produces parenthetical citations \autocite{worman}. The title, however, is printed only where you cite more than one work by a single author. Citations in footnotes will produce full bibliographical information on the first occasion,\footcite{aristotle:poetics} though this can be changed.
+
+The package is loaded in the usual way:
+\begin{verbatim}
+     \usepackage[style=mla]{biblatex}
+\end{verbatim}
+Since MLA is an American Style, this example uses
+\begin{verbatim}
+     \usepackage[american]{babel}
+\end{verbatim}
+to ensure the correct language file is loaded; it also loads \textsf{csquotes} with the \verb~american~ option.
+
+\input{standardpre3.tex} I have included another work by Aristotle \parencite{aristotle:poetics}, in order to show how the MLA style prints titles (only) where more than one work by a single author has been cited.
+
+\input{standardpre4.tex}
+
+\end{document}

@@ -1,0 +1,24 @@
+\input{standardpre1.tex}
+\usepackage[style=british]{csquotes}
+\usepackage[style=apa,backend=biber]{biblatex}
+\renewcommand{\showingstyle}{APA}
+\DeclareLanguageMapping{english}{english-apa}
+\addbibresource{biblatex-examples.bib}
+\input{standardpre2.tex}%
+The \textsf{biblatex-apa} style implements the style rules of the American Psychological Association. It is an author/date style in which \verb~\autocite~ produces parenthetical citations \autocite{worman, reese}, and in which \verb~\textcite~ is frequently required, thus: see \textcite{worman}.
+
+The package is loaded in the usual way:
+\begin{verbatim}
+     \usepackage[style=apa]{biblatex}
+\end{verbatim}
+The one \enquote{trick} with this style is that it is important to load an appropriate language mapping. So, for instance, after loading \textsf{biblatex}, you need to
+\begin{verbatim}
+     \DeclareLanguageMapping{english}{english-apa}
+\end{verbatim}
+(substituting, of course, your own language). If you don't do this, you will get errors.
+
+\input{standardpre3.tex}
+
+\input{standardpre4.tex}
+
+\end{document}

@@ -1,4 +1,4 @@
-\chapter{Quick Start Guide}\label{ch:quickstart}
+\chapter{快速入门}\label{ch:quickstart}
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 快速入门\end{CJK}}
 
 \biblatex\ is a modern, and vastly more flexible, replacement for
@@ -8,12 +8,14 @@ more carefully explained guide is found in
 chapter~\ref{ch:introduction}, and of course much more information
 throughout the guide, and in the \biblatex\ manual.
 \marginpar{
-\begin{CJK}{UTF8}{gbsn}\footnotesize 
+\begin{CJK}{UTF8}{gbsn}\footnotesize
 本章提供了最最简单的入门介绍，主要介绍参考文献生成需要准备的内容和步骤。详细入门介绍见第\ref{ch:introduction}章
 \end{CJK}}
 
 
-\section{Step 1: Create a \texttt{.bib} file}\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 第一步 准备bib文件
+%\section{Step 1: Create a \texttt{.bib} file}
+\section{第一步：准备bib文件}
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 第一步 准备bib文件
 \end{CJK}}
 Containing the bibliographical data. \biblatex\ follows the basic
 structure of \bibtex, but expands on
@@ -45,7 +47,9 @@ source.
 \label{quickstart:bib}
 \end{figure}
 
-\section{Step 2: Write source file}\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 第二步 准备tex源文件
+%\section{Step 2: Write source file}
+\section{第二步：准备tex源文件}
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 第二步 准备tex源文件
 \end{CJK}}
 
 Prepare your source file, loading the \biblatex\ package, adding your
@@ -154,13 +158,17 @@ figure~\ref{quickstart:tex}.
 \label{quickstart:tex}
 \end{figure}
 
-\section{Step 3: Compile the \LaTeX\ source}\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 第三步 编译tex文档
+%\section{Step 3: Compile the \LaTeX\ source}
+\section{第三步：编译tex文档}
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 第三步 编译tex文档
 \end{CJK}}
 
 Compile the \LaTeX\ source file, using |pdflatex|, |xelatax|, or
 |lualatex|.
 
-\section{Step 4: Run \package{Biber}}\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 第四步 运行 biber \end{CJK}}
+%\section{Step 4: Run \package{Biber}}
+\section{第四步：运行 biber}
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 第四步 运行 biber \end{CJK}}
 
 Run the \package{Biber} program to prepare bibliographical data. Do
 this by running
@@ -171,7 +179,9 @@ this by running
   biber \angled{basename}.bcf
 \end{pseudoverb}
 
-\section{Steps 5 \ldots: Run \LaTeX\ at least once more}\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 第五步 至少再运行一次\LaTeX\ \end{CJK}}
+%\section{Steps 5 \ldots: Run \LaTeX\ at least once more}
+\section{第五步 至少再运行一次\LaTeX }
+\marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 第五步 至少再运行一次\LaTeX\ \end{CJK}}
 
 Run \LaTeX\ at least once, and sometimes twice more. It will read in
 the citation data that \package{Biber} has prepared, produce the

@@ -1,4 +1,5 @@
-\chapter{Styles: The Menu}\label{ch:bibstyles}
+%\chapter{Styles: The Menu}
+\chapter{样式: 格式菜谱}\label{ch:bibstyles}
 
 \indexstart{styles!overview}
 There are many different citation and bibliography styles available
@@ -19,7 +20,7 @@ it's a good idea to try to identify them broadly.
   child {
     node[bag] {labelled}
         child {
-           node[bag] {abstract} 
+           node[bag] {abstract}
               child {
            node[bag, color=red]{numeric}}
               child {
@@ -39,7 +40,8 @@ it's a good idea to try to identify them broadly.
 \end{tikzpicture}
 \caption{Citation: Family Tree}
 \end{figure}
-
+\marginpar{\footnotesize 参考文献标注分两类样式，一是标签式的(常用一个标签作为交叉引用)，而是非标签式的(通常给出详细的文献信息，但因为会占据大量空间，也会使用一套缩略机制，比如拉丁式的 ibid., op.\ cit., loc.\ cit., supra, infra 等)。
+}
 The first big division is between styles which rely on \emph{labels}
 and those that place full bibliographical information directly into
 citations. In labelled styles the bibliography contains the essential
@@ -57,7 +59,10 @@ gadgets: ibid., op.\ cit., loc.\ cit., supra, infra).
 The next division is between \emph{abstract} labelling systems and
 \emph{partly meaningful} labelling systems. In an abstract labelling
 system, the label carries no bibliographical information at all.
-It might be simply a number. To follow it up, the reader
+It might be simply a number.
+\marginpar{\footnotesize 标签式的标注又可以分为摘要式标签(不带文献信息，而用数字或字母序号)，部分表义标签(带有部分参考文献信息比如作者和年份等)。
+}
+To follow it up, the reader
 \emph{must} look it up in the bibliography. In a partly meaningful
 labelling system (typically an author/year system), the label does
 provide some information which is likely to mean something:
@@ -106,14 +111,20 @@ style'\marginnote{\cs{usepackage[citestyle=...]\{biblatex\}}} (which
 determines how citations appear in the text) and the `bibliography
 style'\marginnote{\cs{usepackage[bibstyle=...]\{biblatex\}}} (which
 determines how the list of references is printed; it is possible to
-specify each separately. In practice, however, there tends to be a
+specify each separately.
+\marginpar{\footnotesize 样式有区分标注(决定正文中的标注形式)和著录(决定文献表中的打印格式)样式。两者可以分别制定，当使用同名样式时，可以合并为一个style选项表示。
+}
+In practice, however, there tends to be a
 connection between these things, and most users will not specify them
 separately, but will simply specify a \verb|style| option when loading
 \biblatex\, which will load both citation style and bibliography
 style. That is what we assume here.
 
 Another line of division within \biblatex\ styles is between generic
-styles and specific styles. Generic styles (like the standard
+styles and specific styles.
+\marginpar{\footnotesize 样式分一般样式(如标准样式)和特殊样式(精确实现某种文献著录要求)。要寻找某种样式，应首先确认是否有现成的样式可用。CTAN上提供了很多样式包，其中一些比较成熟且长期有人维护，比如APA样式等。
+}
+Generic styles (like the standard
 \biblatex\ styles) reflect common citation practices but do not insist
 on conforming to any particular style guide. Specific styles aim to
 provide accurate implementations of particular detailed guides. In
@@ -164,7 +175,7 @@ Royal Society of Chemistry       & \texttt{biblatex-chem}           & 1.1s      
 \textit{Science}                 & \texttt{biblatex-science}        & 1.1g             & 2016          \\
 OSCOLA                           & \texttt{oscola}                  & 1.5              & 2017          \\
 Philosophy                       & \texttt{biblatex-philosophy}     & 1.9              & 2017          \\
-SBL                              & \texttt{biblatex-sbl}            & 0.8.1            & 2017          \\  
+SBL                              & \texttt{biblatex-sbl}            & 0.8.1            & 2017          \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -209,7 +220,10 @@ fixed,\footnote[][-3ex]{If requirements \emph{are} absolutely
 probably find something which is satisfactory.
 
 I'm not going to say much more of the precisely tailored styles:
-you'll know if those are what you want. The rest of this chapter
+you'll know if those are what you want. 
+\marginpar{\footnotesize 本章余下部分介绍一些标准样式，以帮助读者理解这些样式的用途。
+}
+The rest of this chapter
 surveys some of the standard (and a few of the other available
 `general' styles) to help you understand what they provide. It's
 helpful to consider them family-by-family. But bear in mind that
@@ -219,7 +233,8 @@ than as a bibliographic \emph{dernier cri}. Still, much of what is
 said about them is generally applicable.
 
 \indexstart{bibliography style!numeric!standard}
-\subsection{Standard Numeric Styles}
+%\subsection{Standard Numeric Styles}
+\subsection{标准顺序数字编码样式}
 
 Numeric styles, though rather tedious to produce in the days of
 typewriters and hot metal type, are quite convenient for computers,
@@ -351,7 +366,8 @@ dispense with these delimiters altogether, you need to do rather more
 work. This topic is covered in some detail below.\intref{p~\pageref{recipe:brackets}}
 \indexstop{bibliography styles!numeric!standard}
 \indexstart{bibliography styles!alphanumeric!standard}
-\section{Alphanumeric Labels}
+%\section{Alphanumeric Labels}
+\subsection{字母标签样式}
 
 Alphanumeric labels look like [JW86] or [Jon95]. They are a half-way
 house between the elegant simplicity of numerical citations, and the
@@ -404,7 +420,7 @@ Alternatively, you can directly set the \verb|label| field. In
 practical terms, that will produce the same result.
 \begin{verbatim}
 @book{book1,
-  author = {Author, A.} 
+  author = {Author, A.}
   ...
   label = {MyLabel}
 }
@@ -437,7 +453,8 @@ variation.
 \end{itemize}
 \index{bibliography style!alphanumeric!standard}
 
-\section{Author/Year Styles}
+%\section{Author/Year Styles}
+\section{作者/年份样式}
 
 Author/year styles set citations in a form such as (Bloggs 1982). They
 are common in many humanities subjects. Where an author has more
@@ -489,7 +506,7 @@ are:\begin{itemize}
 \item Do you want to use `ibid' for repeated citations of the same
   source? (In other words, should successive citations of a given work
   produce `(Bloggs 1982) \ldots\ (ibid., p.~100)' instead of `(Bloggs
-  1982) \ldots\ (Blogs 1982, p.~100)'. 
+  1982) \ldots\ (Blogs 1982, p.~100)'.
 \end{itemize}
 Depending on the answer to those questions, load the appropriate style
 as shown in table \ref{authoryear:styles}. (If you want multiple
@@ -508,7 +525,7 @@ more than three names, they will be abbreviated to one name `et al'
 instance, the entry:
 \begin{Verbatim}
 @book{companion,
-  author = {Goossens, Michel and Mittelbach, Frank 
+  author = {Goossens, Michel and Mittelbach, Frank
             and Samarin, Alexander},
   title = {The LaTeX Companion},
   date  = {1994},
@@ -580,7 +597,8 @@ seems questionable (and this is the default setting).
 \indexstop{bibliography style!author/year!standard}
 
 \indexstart{bibliography style!author/title!standard}
-\section{Author/Title Styles}
+%\section{Author/Title Styles}
+\section{作者/题名样式}
 
 The various author/title styles all use the author's name as the
 primary citation label. Depending on the particular style, a title is
@@ -630,7 +648,7 @@ three questions:
 Some \verb|\parencite{smith}| have pointed out that this is an unnecessarily
 complex range of options \verb|\parencite[100]{smith}|.
 \end{quote}
-will give you 
+will give you
 \begin{quote}
 Some (Smith, \emph{Book}) have pointed out that this is an
 unnecessarily complex range of options (ibid, p.~100).
@@ -686,7 +704,8 @@ there is a very sophisticated, and highly configurable, style written
 by Dominik Waßenhoven, the \texttt{authortitle-dw} style, which is
 part of the \package{biblatex-dw} style package.
 
-\section{Verbose styles}
+%\section{Verbose styles}
+\section{完整信息样式}
 
 \indexstart{bibliography style!verbose!standard}
 The essence of verbose or bibliographical citation styles is that they
@@ -739,7 +758,7 @@ questions.
 \small
 \begin{tabular}{lp{1.7in}p{1.7in}p{1.7in}}
 \toprule
-                                               & \textsf{first citation} & \textsf{subsequent} & 
+                                               & \textsf{first citation} & \textsf{subsequent} &
 \textsf{repeated}                                      \\
 \midrule verbose                               & Frank Albert Cotton et al. \emph{Advanced inorganic
   chemistry}. 6th ed. Chichester: Wiley, 1999  & Cotton et al.,

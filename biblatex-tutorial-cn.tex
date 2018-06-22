@@ -2,6 +2,8 @@
 \PassOptionsToPackage{cmyk}{xcolor}
 \usepackage[utf8]{inputenc}
 \usepackage{CJKutf8}
+%\usepackage[encapsulated]{CJK}%可以与下一句替换
+\input{zhwinfonts}
 \usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{enumitem}
@@ -116,6 +118,7 @@
 \date{2017}
 
 \begin{document}
+\begin{CJK}{UTF8}{zhsong}
 
 % The following code to deal with subtitles is adapted from
 % Ryan Spencer's post at
@@ -146,7 +149,7 @@
     \clearpage}
 \makeatother
 
-\subtitle{An Easier Read}
+\subtitle{简易读本}%An Easier Read
 
 \frontmatter
 \include{frontmatter}
@@ -185,6 +188,8 @@
 \include{styleeg}
 
 \include{indexes}
+
+\end{CJK}
 
 \end{document}
 

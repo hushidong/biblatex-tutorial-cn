@@ -1,4 +1,5 @@
-\chapter{Multiple Bibliographies}\label{ch:subdivisions}
+%\chapter{Multiple Bibliographies}
+\chapter{多重文献表}\label{ch:subdivisions}
 \index{bibliography!multiple!see multiple bibliographies}
 
 We now come to consider the various methods of producing
@@ -42,7 +43,8 @@ provided these facilities with biblatex. These are \emph{not}
 compatible with \biblatex; you cannot use them together --- and you
 don't need to.
 
-\section{Source-based division}
+%\section{Source-based division}
+\section{基于文献源划分的多重文献表}
 
 \indexstart{multiple bibliographies!source-based division}
 In principle, source-based division is simple. You provide some way for
@@ -89,7 +91,8 @@ combining device is the \emph{filter}, which enables complex
 assemblies of conditions to be defined and used simply.
 
 \index{multiple bibliographies!source-based division!selection}
-\paragraph{How \biblatex\ chooses.} All these distinctions are brought
+%\paragraph{How \biblatex\ chooses.}
+\paragraph{biblatex 怎么进行筛选} All these distinctions are brought
 into operation using an option in the bibliography heading. These
 follow a standard pattern:
 \begin{quote}
@@ -224,7 +227,8 @@ candidate for specifying a source as `important' in a set of student
 notes for instance, or for quick-and-dirty work where you don't want
 to alter a database file permanently.
 
-\subsection{Combining criteria with user-defined filters}
+%\subsection{Combining criteria with user-defined filters}
+\subsection{利用自定义过滤器综合筛选条件}
 
 \index{multiple bibliographies!source-based division!filters}
 Suppose you want to combine filters in complicated ways: for instance
@@ -260,7 +264,8 @@ And we could the use it:
                    filter=croffprim]
 \end{Verbatim}
 
-\subsection{Automation}
+%\subsection{Automation}
+\subsection{自动化}
 
 \index{multiple bibliographies!source-based division!automation}
 Both keyword and category filters ultimately depend on direct user
@@ -294,7 +299,8 @@ than provide a set of recipes.
 \end{itemize}
 \indexstop{multiple bibliographies!source-based division}
 
-\section{Document-based division}
+%\section{Document-based division}
+\section{基于文档划分的多重文献表}
 \indexstart{multiple bibliographies!document-based division}
 
 \biblatex\ offers two main devices for producing bibliographies that are
@@ -348,7 +354,8 @@ Drofnats' file for his paper, and Dr Frobwangler's file for hers,
 without the trouble and risk of error that there is if files are
 combined.
 
-\subsection{Identifying segments and sections}
+%\subsection{Identifying segments and sections}
+\subsection{识别文献分节}
 
 \index{multiple bibliographies!document-based division!refsegment}
 \index{multiple bibliographies!document-based division!refsection}
@@ -412,7 +419,8 @@ and ends. There are three ways you can do this:
 \end{Verbatim}
 \end{enumerate}
 
-\subsection{Identifying resources for refsections}
+%\subsection{Identifying resources for refsections}
+\subsection{识别分节内的文献源}
 
 \index{refsection!database}\index{refsegment!database}
 Refsegments share the bibliography resources (|.bib| files) of the
@@ -442,7 +450,7 @@ instructions.
   labels of the applicable resources as an optional argument:
 \begin{Verbatim}
   \newrefsection[drofnats]
-  ... 
+  ...
   \newrefsection[frobwangler]
 \end{Verbatim}
 \item If there are |.bib| files that you want to have available in all
@@ -458,14 +466,15 @@ declare a resource which is automatically made available to every
 refsection. So
 \begin{Verbatim}
   \addglobalbib{./bibfiles/common.bib}
-\end{Verbatim} 
+\end{Verbatim}
 will make |common.bib| accessible to every refsection, without any
 need to include it in the optional argument.\csindex{addglobalbib}
 \end{itemize}
 \end{enumerate}
 \indexstop{multiple bibliographies!document-based division}
 
-\subsection{Printing the bibliographies}
+%\subsection{Printing the bibliographies}
+\subsection{打印文献表}
 
 To print a bibliography for a single refsection, you do one of two
 things. First, you can explicitly identify the section for which you
@@ -505,14 +514,14 @@ to include that section.
 \cs{addbibresource}[label=chapter1]\tikz{\node(labelnode)[shape=coordinate]{};}\{chaptera.bib\}\\
 \cs{addbibresource}[label=chapter2]\{chapterb.bib\}\\
 
-\cs[...]{chapter}\\ 
+\cs[...]{chapter}\\
 \colorbox{green!15}{\parbox{0.9\textwidth}{
 \cs{newrefsection}\,\tikz{\node(refsectnode)[shape=coordinate]{};}[chapter1]\\[2ex]
 ... [lots of citations] ...\\[2ex]
 
 \cs{printbibliography}\tikz{\node(pbnode)[shape=coordinate]{};}[heading=subbibliography]\\[2ex]
 }}
-\cs[...]{chapter}\\ 
+\cs[...]{chapter}\\
 \cs{newrefsection}[chapter2]\\[2ex]
 
 ... [lots of citations] ...\\[2ex]
@@ -554,7 +563,8 @@ consolidated, bibliography, there are two approaches. (1) You can use
 everything. Unfortunately there is no way to tell \biblatex\ to print
 a combined bibliography of multiple sections.
 
-\subsection{Some advice}
+%\subsection{Some advice}
+\subsection{一些建议}
 
 \index{multiple bibliographies!considered harmful}
 In many cases, excessively divided bibliographies are more harmful
@@ -568,4 +578,4 @@ instance) subdivision can easily be over done.
 %%% coding: utf-8
 %%% mode: LaTeX
 %%% TeX-master: "biblatex-tutorial"
-%%% End:
+%%% End: 

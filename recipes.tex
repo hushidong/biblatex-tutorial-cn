@@ -1,11 +1,13 @@
-\chapter{Recipes}\label{ch:recipes}
+%\chapter{Recipes}
+\chapter{实用技巧}\label{ch:recipes}
 
 A comprehensive guide to customization is outside the scope of this
 book. But some requests for customization are very common, and it
 seems worthwhile to have a short chapter that provides some common
 recipes.
 
-\section{Names}
+%\section{Names}
+\section{姓名相关的技巧}
 
 \index{customization!names}
 \paragraph{I want at most 1/2/3/4 names printed before `and
@@ -182,7 +184,7 @@ capitals. We define the following
 \renewcommand{\mkbibnameprefix}[1]{\mkbibemph{#1}}
 \renewcommand{\mkbibnamesuffix}[1]{\mkbibemph{#1}}
 \renewcommand{\mkbibnamefamily}[1]{\textsc{#1}}
-\end{Verbatim} 
+\end{Verbatim}
 And obtain results as shown in figure \ref{namestyle}.
 \begin{figure}
 \begin{minipage}[t]{3in}
@@ -263,7 +265,8 @@ for it. You tell the package your name (using the \cs{omitname}) macro
 (or package option).
 
 \indexstart{punctuation}\index{customization!punctuation|see{punctuation}}
-\section{Punctuation issues}\label{sec:punctuation}
+%\section{Punctuation issues}
+\section{标点问题}\label{sec:punctuation}
 
 There are many configurable punctuation marks in \biblatex---too many
 to deal with comprehensively here. In this section I'm only going to
@@ -513,7 +516,8 @@ Of course, you can equally use \package{csquotes} with «\,French\,»,
 
 %''
 
-\section{Issues about what gets printed}
+%\section{Issues about what gets printed}
+\section{关于打印什么内容的问题}
 
 \index{customization!URL!font}\index{customization!font!url}
 \paragraph{I don't want to print \smallcaps{urls}\slash
@@ -621,4 +625,4 @@ shows.
 %%% coding: utf-8
 %%% mode: LaTeX
 %%% TeX-master: "biblatex-tutorial"
-%%% End:
+%%% End: 

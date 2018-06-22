@@ -1,4 +1,5 @@
-\chapter{The Bibliography}
+%\chapter{The Bibliography}
+\chapter{参考文献表}
 \label{ch:bibliographyformat}
 \index{customization!bibliography title|see{bibliography, title}}
 \index{customization!bibliography heading|see{bibliography, heading}}
@@ -12,7 +13,8 @@ bibliography. The magic command is:\csindex{printbibliography}\manref{\S~3.7.7}
 And, for simple cases, it may even be as easy as that! But there are
 quite a number of refinements.
 
-The refinements can be classified as follows:
+The refinements can be classified as follows:\marginpar{\footnotesize printbibliography 是打印文献表的基本命令，对其还有做如下几类修改：标题、条目格式、排序、筛选、多文献表。
+}
 \begin{itemize}
 \item Changes to the way the bibliography is headed: what is it
   called? Is it treated as if it were a new chapter, or a new section?
@@ -34,7 +36,8 @@ also going to leave sorting for a separate discussion. So this chapter
 is really going to concentrate on the headings, the physical format of
 the bibliography.
 
-\section{Headings}
+%\section{Headings}
+\section{标题}
 
 \indexstart{bibliography!heading}
 In a \LaTeX\ document, a heading is more than just its words: a
@@ -134,7 +137,8 @@ headings (and title, and notes) it's actually better to set them up
 after \cs[document]{begin}.
 \indexstop{bibliography!heading}
 
-\section{Bibliography appearance}
+%\section{Bibliography appearance}
+\section{文献著录格式}
 
 \indexstart{bibliography!appearance}
 The appearance of a bibliography is largely controlled by a
@@ -190,7 +194,8 @@ we get
 \end{figure}
 \indexstop{bibliography!appearance}
 
-\section{Other lists and indexing}
+%\section{Other lists and indexing}
+\section{其它列表和索引}
 
 \index{shorthand!list of shorthands}
 If you use `shorthands'\intref{See p~\pageref{shorthands}} to define abbreviations for particular works, you can print these with the command:
@@ -227,4 +232,4 @@ compressed).
 %%% coding: utf-8
 %%% mode: LaTeX
 %%% TeX-master: "biblatex-tutorial"
-%%% End:
+%%% End: 

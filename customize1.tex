@@ -1,6 +1,10 @@
-\chapter{Customisation: A Short Tour}\label{ch:customize1}
+%\chapter{Customisation: A Short Tour}
+\chapter{定制：一个简短的入门}\label{ch:customize1}
 
-We are about to dive into the details of using \biblatex. As we go
+We are about to dive into the details of using \biblatex. 
+\marginpar{\footnotesize 可定制型是 biblatex 的重要特色，如果要设计某种特定的文献样式，那么需要大量的定制，这是相当复杂的。对于一般用户，biblatex 提供了一些接口用于常见的定制(以实现需要的格式变化)。本章不深入介绍这种定制的内在机制，但用户需要理解实现改变的常见方法。要实现某种目的，biblatex 可能有多种途径，因此也存在除本书建议外的方法。一般来讲，本书作者希望给出尽可能简单的方法。
+}
+As we go
 through them, we are going to be thinking a bit about
 customisation.
 
@@ -38,12 +42,14 @@ well be just as good (or better) than the ways I have
 suggested. Generally, I've tried to keep things as simple as possible.
 
 \clearpage
-\section{The common methods}
+%\section{The common methods}
+\section{常见方法}
 
 \indexstart{customisation!general techniques}
 \index{Biblatex!package options|see{options}}
 \index{options}
-\paragraph{Using an option.}\intref{\emph{Manual} \S~3.1}
+%\paragraph{Using an option.}
+\paragraph{使用选项}\intref{\emph{Manual} \S~3.1}
 Many `customisations' can be achieved simply by setting one of
 \biblatex's package options. This is done when you load \biblatex. For
 instance, to change the way the bibliography is sorted, you might set
@@ -58,7 +64,8 @@ instance, there are a number of options that can be given to the
 \cs{printbibliography}\intref{See chapter~\ref{ch:customize1}}
 command to affect how the bibliography is printed.
 
-\paragraph{Redefining a command.} It's quite common for a change to be
+%\paragraph{Redefining a command.}
+\paragraph{重定义命令} It's quite common for a change to be
 made by redefining a command. For instance, in many cases \biblatex\
 uses a command to insert a piece of punctuation, so that if you want
 to change the punctuation,\intref{See p~\pageref{sec:punctuation}}
@@ -74,11 +81,14 @@ some really odd reason we wanted to make it `AND'. To do this, you use
 \end{verbatim}
 
 \index{punctuation}
-\paragraph{Punctuation.} At this point, one feature of
+
+%\paragraph{Punctuation.}
+\paragraph{标点} At this point, one feature of
 bibliography-bashing is worth attention. If you do much of it, you
 will find yourself spending quite a bit of time fiddling with
 punctuation. It's not easy, but \biblatex\ has some rather
-sophisticated ways of helping you.
+sophisticated ways of helping you.\marginpar{\footnotesize biblatex 提供的标点，具有避免多重标点、避免多余空格、根据上下文环境输出等特性。
+}
 
 When setting punctuation in \biblatex\ commands, it's often best
 \emph{not} to use punctuation marks directly: for although they will
@@ -121,7 +131,8 @@ white space before the mark. The best way to think of them is as
 
 \index{strings!commonly used}
 \csindex{DefineBibliographyStrings}
-\paragraph{Bibliography strings.} Apart from the bits
+%\paragraph{Bibliography strings.}
+\paragraph{本地化字符串} Apart from the bits
 of\intref{\emph{Manual} \S~4.9.1} bibliographical information
 assembled from the database, all sorts of bits of text get printed in
 a bibliography: `ed.', `vol.', `pp.'  and so on. These are handled by
@@ -145,7 +156,8 @@ by', \biblatex\ would produce `conjured by' we could alter the
 \index{formatting!field formats}
 \csindex{DeclareFieldFormat}
 \csindex{DeclareFieldFormat}
-\paragraph{Field formats.} Internally, when it prints some data from
+%\paragraph{Field formats.}
+\paragraph{域格式} Internally, when it prints some data from
 the \verb|.bib| file, \biblatex\ passes the data through a filter that
 is defined for that field and entry-type. Although there are some
 extra complexities about fields that hold names or lists, the basic
@@ -178,7 +190,8 @@ These are more complex; ordinary users are probably best to leave them
 alone; but they may be encountered from time to time in particular recipes.
 
 \index{customisation!hooks}
-\paragraph{Hooks.} There\intref{\emph{Manual} \S~4.10.6} are a number
+%\paragraph{Hooks.} 
+\paragraph{钩子} There\intref{\emph{Manual} \S~4.10.6} are a number
 of `hooks' offered by \biblatex\ at which it is made relatively easy
 to insert user-defined commands which might do something useful. For
 instance \cs{AtEveryCitekey}\csindex{AtEveryCitekey} allows one to
@@ -192,14 +205,16 @@ citation. From time to time you may be encouraged to use these hooks
 for various purposes.
 
 \index{sourcemap directive}
-\paragraph{Source mapping.} In fact,\intref{\emph{Manual} \S~4.5.2}
+%\paragraph{Source mapping.}
+\paragraph{数据源映射} In fact,\intref{\emph{Manual} \S~4.5.2}
 \biblatex\ can `get at' the data even before it is read in---indeed,
 while it is being processed by \package{Biber}. The facilities
 providing for source mapping enable one to play various useful tricks
 with the \verb|.bib| file. We've already seen an example of this on
 page \pageref{datamap}.
 
-\paragraph{Deeper and darker.}
+%\paragraph{Deeper and darker.}
+\paragraph{底层重定义}
 All these techniques (options, redefinition of `hook' commands, and
 the redefinition of bibliography strings) are fairly simple, and
 intended for regular use. Some customisations take us deeper: into the
@@ -208,11 +223,13 @@ of citation commands, the redefinition of things called bibmacros, and
 ultimately the rewriting of bibliography drivers.
 \indexstop{customisation!general techniques}
 
-\section{Where to put customisations}
+%\section{Where to put customisations}
+\section{在哪里做重定义}
 
 \indexstart{customisation!file locations}
 This all depends on whether your customisations are `one off' or
-intended to be used in all your documents.
+intended to be used in all your documents.\marginpar{\footnotesize 取决于定制的改变是临时的还是要在所有文档中使用。临时用可以使用选项/在导言区定制/在cfg文件中做定义。如果要定制样式，那么就需要在bbx/cbx文件中做。
+}
 \begin{itemize}
 \item For one off customisations:
 \begin{itemize}
@@ -243,4 +260,4 @@ intended to be used in all your documents.
 %%% coding: utf-8
 %%% mode: LaTeX
 %%% TeX-master: "biblatex-tutorial"
-%%% End:
+%%% End: 

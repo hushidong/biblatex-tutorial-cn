@@ -1,7 +1,11 @@
-\chapter{Citation Commands}\label{ch:citationcommands}
+%\chapter{Citation Commands}
+\chapter{标注命令}\label{ch:citationcommands}
 
 The heart of any citation package, from the user’s point of view, is
-the citation commands. These are what you use most. \biblatex\ offers a
+the citation commands. 
+\marginpar{\footnotesize 从用户的角度看，引用宏包的核心是标注(引用)命令。
+}
+These are what you use most. \biblatex\ offers a
 number of different commands. They follow a consistent pattern; so
 once you've mastered one it’s quite easy to grasp the others. Their
 exact output depends on the citation style you are using.
@@ -32,11 +36,11 @@ of the cited work.
 \begin{tabular}{lll}
 \toprule
 \textsf{signal} & \textsf{citation} & \textsf{pinpoint} \\
-\midrule 
+\midrule
 See also &   [1] \\
          &   Jones 1990   & p. 24 \\
 cf.      &   JJ90         & ch. 3 \\
-see      &   Jones \ldots\    \\ 
+see      &   Jones \ldots\    \\
          &   ibid.        &  202 \\
 \bottomrule
 \end{tabular}
@@ -70,12 +74,16 @@ argument is called the \texttt{prenote} and specifies the `signal'.
 
 Notice that if there is only one optional argument it is assumed to be
 the postnote; but if there are two, then the first optional argument
-is the prenote. If we want a prenote but no postnote, as in the first
+is the prenote. 
+\marginpar{\footnotesize 标注命令通常有一个必选参数和两个可选参数，给出一个可选参数时作为postnote。
+}
+If we want a prenote but no postnote, as in the first
 and last examples, we have to leave the second argument blank. But if
 we want a postnote and no prenote, we just use one optional
 argument. All the citation commands follow this format.
 
-\section{The Basic Five}
+%\section{The Basic Five}
+\section{五个基本命令}
 \indexstart{citation!commands!general}
 
 There are five basic citation commands: \cs{cite}, \cs{footcite},
@@ -174,7 +182,7 @@ operate with the various different standard styles.
 \scriptsize
 \begin{tabular}{llllll}
 \toprule
-                                         & \cs{cite[9]\{jones\}}     & \cs{footcite[9]\{jones\}}  & 
+                                         & \cs{cite[9]\{jones\}}     & \cs{footcite[9]\{jones\}}  &
 \cs{parencite[9]\{jones\}}               & \cs{autocite[9]\{jones\}} & \texttt{as} \cs{textcite[9]\{jones\}}
 says                                                                                                                        \\
 \midrule \textsf{numeric}                & [1, p.~9]                 & $^*$1,
@@ -201,7 +209,8 @@ Jones (``Title'', p.~9) says                                                    
 \end{table*}
 \indexstop{citation!commands!general}
 
-\section{Capital Forms}
+%\section{Capital Forms}
+\section{五个基本命令的首字母大写形式}
 
 \indexstart{citation!commands!capital forms} Each of \cs{cite},
 \cs{parencite} and \cs{autocite} have `capital' forms (\cs{Cite}, etc)
@@ -215,13 +224,17 @@ always assumes that the citation will begin a sentence so that a
 capital may be appropriate.  \indexstop{citation!commands!capital
   forms}
 
-\section{Specific to Numerical Styles}
+%\section{Specific to Numerical Styles}
+\section{顺序数字编码样式的注意点}
 
 \index{citation!commands!for numerical styles}\csindex{supercite}
 For numerical styles, the command \cs{supercite} prints citations as
 superscript numbers. It’s rather unusual to want both regular
 full-size labels and superscript labels in the same document; but if
-you do you can mix \cs{cite} and \cs{supercite} as you wish. Generally
+you do you can mix \cs{cite} and \cs{supercite} as you wish. 
+\marginpar{\footnotesize 注意 supercite命令忽略prenote 和 postnote。
+}
+Generally
 speaking you want one or the other. For this, the safest course is to
 use the option \texttt{autocite=super}, and use \cs{autocite}.
 
@@ -233,7 +246,8 @@ to cram signals and pinpoints into superscript numbers. So
 \end{quote}
 If this happens, a warning will be given.
 
-\section{Using particular fields}
+%\section{Using particular fields}
+\section{标注部分文献信息的命令}
 
 \indexstart{citation!commands!particular fields}
 There are a number of citation commands that are not intended to print
@@ -243,14 +257,17 @@ exclusively, useful in author/title and author/year styles, where
 citations are often quite tightly woven into the text.
 
 \csindex{citeauthor}\csindex{citetitle}\index{citation!commands!author}\index{author!citing name}\index{citation!commands!title}\index{title!citing title}
-\paragraph{Author or title alone.} The commands \cs{citeauthor} and
+%\paragraph{Author or title alone.}
+\paragraph{仅标注作者或题名} The commands \cs{citeauthor} and
 \cs{Citeauthor} print the author's name (the latter with capitals
 forced, even if they would otherwise not be used). The commands
 \cs{citetitle} and \cs{citetitle*} print the title: abbreviated if
 possible in the regular form, but always in full in the starred form.
 
 \index{citation!commands!year}\csindex{citeyear}\csindex{citedate}\index{date!citing date}\index{year|see{date}}
-\paragraph{Year or date.} The\marginnote{{\ttfamily
+
+%\paragraph{Year or date.} 
+\paragraph{年份或日期} The\marginnote{{\ttfamily
     \cs{citeauthor\{key\}} published his roman a clef
     (\cs{citeyear*}\{key\}) in \cs{citeyear}\{key\}} \gives\ Locke
   published his roman a clef (1905b) in 1905} commands \cs{citeyear}
@@ -263,9 +280,11 @@ say, five works by a particular author in one year,
 \verb|citeyear{prolific86c}| would print `1986c'.
 
 \index{citation!commands!url}\index{URL!citing}\csindex{citeurl}
-\paragraph{URLs.} The \cs{citeurl} command will print any url.
+%\paragraph{URLs.} 
+\paragraph{网址} The \cs{citeurl} command will print any url.
 
-\paragraph{Others.} Apart from these commands, which the standard
+%\paragraph{Others.} 
+\paragraph{其它} Apart from these commands, which the standard
 styles already provide, it is possible to construct your own `partial'
 commands,\manref{\S~3.8.7} using \cs{citename}, \cs{citelist} and
 \cs{citefield}. There are three commands because \biblatex\
@@ -276,7 +295,8 @@ suitable or intended for direct use: they would need to be `wrapped'
 in some more user-friendly command for use in a document.
 \indexstop{citation!commands!particular fields}
 
-\section{Entry sets}
+%\section{Entry sets}
+\section{条目集}
 
 \index{citation!commands!entry sets}\index{sets of sources cited together|see{entryset}}\index{entryset@\texttt{entryset}}
 In some disciplines it is common to have a single numeric citation
@@ -312,11 +332,15 @@ so that
 \end{pseudoverb}
 will produce the same output as figure \ref{entryset1}.
 
-\section{Pinpoints}
+%\section{Pinpoints}
+\section{标注的一些细节}
 
 \indexstart{citation!postnote}\index{pinpoints|see{citation, postnote}}
 It usually makes sense to give pinpoint citations to a particular work
-primarily by reference to one type of marker. So, for instance, books
+primarily by reference to one type of marker. 
+\marginpar{\footnotesize 标注还要注意一些细节，比如页码引导符等。输入数字可以让biblatex自动输出引导符，也可以手动输入引导信息。也可以利用 pagination 域，本地化字符串，nopp，pno，ppno，psq(拉丁)，psqq(拉丁)，postnote 域格式等做更细致的处理。
+}
+So, for instance, books
 are normally cited by page. How such references are styled depend on
 the particular scheme. Some schemes want `p. 23', others want `p 23',
 others just want `23'. To save effort, \biblatex\ will insert
@@ -338,7 +362,8 @@ numbers, your postnote will be printed as you have entered it.
 cases and customisations.
 
 \index{citation!postnote!suppress prefixes}
-\paragraph{No prefixes} You don't want prefixes, even when you enter a
+%\paragraph{No prefixes}
+\paragraph{不使用引导符} You don't want prefixes, even when you enter a
 purely numerical postnote: you want \cs{cite[22]\{key\}} to produce
 `\angled{key}, 22'. There are a number of ways to achieve this,
 depending on how generally you want to disable the use of prefixes.
@@ -363,7 +388,8 @@ This is most appropriate when you are customising \biblatex\ for a
 style which does not use any prefixes in general.
 
 \index{citation!postnote!force prefixes}
-\paragraph{Forcing prefixes} You want to enter a postnote with a
+%\paragraph{Forcing prefixes}
+\paragraph{强制使用引导符} You want to enter a postnote with a
 non-numerical character, and still get a prefix added. For instance,
 you have a source with pages which have letters, like `1234a'. Again,
 there are a number of solutions.
@@ -383,7 +409,8 @@ adjust automatically. In the real world, there's probably not much
 practical advantage.
 
 \index{citation!postnote!Latin gadgets}\csindex{psq}\csindex{psqq}
-\paragraph{Latin gadgets for multiple pages}There is one special
+%\paragraph{Latin gadgets for multiple pages}
+\paragraph{拉丁式引导符} There is one special
 common case. Suppose you want `p.~20~ff.' or `p.~20 et seq.'  You
 could of course enter the whole postnote manually. But you can also
 use the special commands \cs{psq}\marginnote{\cs{cite[20\textbackslash
@@ -411,7 +438,8 @@ this command:
 \verb|\renewcommand{\sqspace}{}|
 \end{center}
 
-\paragraph{Correcting \biblatex's guesses} \biblatex\ tries to
+%\paragraph{Correcting \biblatex's guesses}
+\paragraph{修正 biblatex 的判断错误} \biblatex\ tries to
 guess whether to add `p.' or `pp.' by working out whether you have
 cited a single page or a range of pages. But occasionally the form of
 a citation might confuse \biblatex, so that it adds `p.' when you need
@@ -420,7 +448,8 @@ yourself, or use the \cs{pno} or \cs{ppno} commands, as explained
 above.
 
 \index{citation!postnote!customisation}\index{customisation!postnote}
-\paragraph{You want something \ldots\ but not `pp.'} Some sources
+%\paragraph{You want something \ldots\ but not `pp.'}
+\paragraph{使用其他而非页码引导符} Some sources
 don't use pages for pinpoint citations. For instance, suppose you are
 citing a work which is normally referred to by section, not page. In
 such a case, you can still use the convenience of having automatic
@@ -464,9 +493,10 @@ articles:
    article  = {Art\adddot}
    articles = {Arts\adddot}}
 \end{verbatim}
-Now all will work as intended. 
+Now all will work as intended.
 
-\paragraph{Modifying standard prefixes} To change the standard
+%\paragraph{Modifying standard prefixes}
+\paragraph{修改标准引导符} To change the standard
 prefixes, you can use essentially the same trick -- only you don't
 need to define the relevant bibliography strings because they already
 exist. So, for instance, if you wanted the abbreviation for page to be
@@ -479,13 +509,15 @@ exist. So, for instance, if you wanted the abbreviation for page to be
 \end{verbatim}
 \indexstop{citation!postnote}
 
-\section{Multiple citations}
+%\section{Multiple citations}
+\section{多重引用}
 
 \indexstart{citation!multiple}\csindex{cites}
 You've probably worked out by now that even the standard citation
 commands will handle multiple citations: \cs{cite\{key1, key2\}} will
 produce `[1, 2]' or `Jones 1990; Smith 2010', or whatever is in
-keeping with the style you have chosen.
+keeping with the style you have chosen.\marginpar{\footnotesize 多种引用的目的是为一个引用命令中的所有文献标注细节信息。
+}
 
 \begin{margintable}
 \begin{tabular}{ll}
@@ -574,7 +606,8 @@ All the main citation commands (and their capitalised forms) have
 multiple versions, consistently named: see table \ref{multicites}.
 \indexstop{citation!multiple}
 
-\section{Citation commands that \ldots\ don't}
+%\section{Citation commands that \ldots\ don't}
+\section{不标注的标注命令}
 
 \csindex{nocite}
 Finally we have to consider a small family of odd citation
@@ -598,8 +631,8 @@ commands. It may be worth doing, because it will make sure that
 \biblatex\ keeps track of internal housekeeping that matters. For
 instance, suppose you had the following:
 \begin{verbatim}
-... is clear \parencite{jones}. Smith's `rebuttal' (see 
-above) hardly meets this point; but this is not Jones's 
+... is clear \parencite{jones}. Smith's `rebuttal' (see
+above) hardly meets this point; but this is not Jones's
 main objection \parencite[45]{jones}. ...
 \end{verbatim}
 If you were using a citation style which used `ibid', the second
@@ -619,4 +652,4 @@ Generally, however, it's better to avoid such implicit citations.
 %%% coding: utf-8
 %%% mode: LaTeX
 %%% TeX-master: "biblatex-tutorial"
-%%% End:
+%%% End: 

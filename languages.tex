@@ -1,4 +1,5 @@
-\chapter{Languages}\label{ch:languages}
+%\chapter{Languages}
+\chapter{语言}\label{ch:languages}
 
 Dealing with different languages is not straightforward; but
 \biblatex\ is fairly well set up for the task. This section aims to
@@ -22,7 +23,7 @@ different languages varies. And, even further `under the skin' there
 are issues about the `encoding' of an input file: how human-readable
 glyphs are turned into machine-readable sequences of numbers.
 
-\section{A dogmatic approach}
+\section{教条方法}%A dogmatic approach
 
 \index{languages!recommendations}
 Later sections of this chapter try to provide a better explanation of
@@ -71,9 +72,11 @@ do this' approach, which will work in many cases.
  \end{pseudoverb}
 \end{enumerate}
 
-\section{Some more detail}
+%\section{Some more detail}
+\section{更多细节}
 
-\subsection{Encodings}
+%\subsection{Encodings}
+\subsection{文档编码}
 
 \index{encoding}
 \biblatex\ (or, more accurately, \package{Biber}) is perfectly
@@ -93,7 +96,8 @@ encodings. In such cases it may be necessary to set input and output
 encodings explicitly; on this, you should consult the \package{Biber}
 documentation.
 
-\subsection{Language}
+%\subsection{Language}
+\subsection{文档语言}
 
 In general, in the \LaTeX\ world, language features are controlled
 using the (older) \package{babel} or (newer) \package{polyglossia}
@@ -231,7 +235,8 @@ There are further and deeper complexities for users of
 available. But those are beyond the scope of this book.
 \indexstop{languages!multiple}
 
-\subsection{Sorting}
+%\subsection{Sorting}
+\subsection{针对语言排序的本地化调整}
 
 \index{sorting!language specific}
 There is a tendency to consider alphabetical order, drilled into us as
@@ -269,12 +274,13 @@ using \texttt{sortlocale=nb\_NO}.
 \caption{Sorted with \texttt{sortlocale=nb\_NO}\label{zebra:no}}
 \end{figure}
 
-\section{Limitations}
+%\section{Limitations}
+\section{局限}
 Although \biblatex\ has many features designed to deal with different
 languages, there are still limits. The limits are, as things stand,
 reached when different languages have fundamentally different ideas
 about the sort of information that should be output, or the order in
-which it shoudl be output. To cope with this it is necessary to carry
+which it should be output. To cope with this it is necessary to carry
 out deep changes to the bibliography drivers, and the existing styles
 do not support this.
 

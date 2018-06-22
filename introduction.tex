@@ -1,5 +1,9 @@
 
-\chapter{What is \package{Biblatex}?}\label{ch:introduction}
+
+
+%\chapter{What is \package{Biblatex}?}
+\chapter{Biblatex 是什么?}
+\label{ch:introduction}
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize Biblatex 是个什么包？
 \end{CJK}}
 
@@ -15,7 +19,8 @@ guide,\intref{p~\pageref{ch:quickstart}} along with an aide memoire to
 the frequently used commands and
 options.\intref{p~\pageref{ch:cheatsheet}}
 
-\section{For the true neophyte}
+%\section{For the true neophyte}
+\section{给纯新手}
 
 \subsection{The basic idea}
 \label{newbie}
@@ -23,7 +28,7 @@ options.\intref{p~\pageref{ch:cheatsheet}}
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 给新手的基本概念
 \end{CJK}}
 
-Academic writing usually cites sources. 
+Academic writing usually cites sources.
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 学术写作需要引用来源，不同的出版商、期刊、个人的写作对于引用的形式要求都是不同的。但文献引用底下的原理是类似的。在正文或脚注等地方引用文献以标注来源，并在合适的地方常用列表的形式给出来源的详细信息。
 
 可以手动给出这些信息，但耗时、费力、容易出错，并且难以应付随时需要的改变。
@@ -72,9 +77,9 @@ there are disadvantages to doing that:
 \end{itemize}
 
 The idea of a citation system is to \emph{separate content from
-  presentation}. 
+  presentation}.
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 参考文献引用系统的逻辑是，把文献来源的重要细节比如作者、题名等放到一个数据库文件中。写作时对这些文献做一个简短的引用，然后由计算机从数据库中抽取信息，然后插入文档中。基于这种方式，作者完全可以找到并利用很多已有的文献数据库。
-\end{CJK}}  
+\end{CJK}}
 You record the important details about a source in a
 database file: the author(s), title, date, publisher and so forth. As
 you write, you use a short reference to indicate the work you want to
@@ -84,9 +89,9 @@ and formatting it into your paper. And in fact, in many fields, you
 can find existing databases which you can borrow from which will
 contain data you need.
 
-This is what \biblatex\ does. 
+This is what \biblatex\ does.
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 这就是 biblatex 做的事情。用户可以维护好一个数据库。然后在写作需要的时候引用其中的文献，在文档编译是，有biblatex 来获取文献的信息并格式化，最后形成引用的标注标签和文献表。
-\end{CJK}}  
+\end{CJK}}
 You maintain a database which contains
 the works you may want to cite. The database can be large: it needn't
 include only the works that you want to cite in a particular paper ---
@@ -103,7 +108,7 @@ it, and construct the citations and bibliography in proper format.
 
 \subsection{In practice}
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 实践中需要几个工具以一定的流程来实现目标。首先至少需要两个文件一个是tex源文件（可能用include和input包含多个文件），一个是文献数据库文件（可能也有多个数据库）。
-\end{CJK}} 
+\end{CJK}}
 
 In practice, getting all this to happen involves a number of different
 tools and programs, which all have to work together.
@@ -115,7 +120,7 @@ database file and your \LaTeX\ source file.
 
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 数据库文件后缀为.bib，内容包含文献来源的详细信息，并以特定的格式（见\ref{ch:database}章）描述。它是一个普通的文本文件，可以利用任何编辑器编写，或利用一些辅助工具来维护
 （见\ref{ch:tools}章）。
-\end{CJK}} 
+\end{CJK}}
 The database file conventionally has the suffix \texttt{.bib}, and
 consists of a set of records containing information about the sources
 you may wish to cite. The format of such a file is described in
@@ -133,7 +138,7 @@ of available `helper' programs.\intref{Chapter \ref{ch:tools}}
 3. 引用文献的语句
 
 4. 打印文献表的语句
-\end{CJK}} 
+\end{CJK}}
 The \LaTeX\ source file conventionally has the suffix \texttt{.tex}
 and contains all your text, marked up in \LaTeX\ format. It also
 contains:
@@ -153,7 +158,7 @@ contains:
 \end{itemize}
 
 The next task is to get the various tools to cooperate together to get
-to the end result that you need. 
+to the end result that you need.
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 下一步就是利用不同工具来配合得到需要的结果，一般需要如下步骤：
 
 1. \LaTeX\ 第一遍编译tex源文档
@@ -163,7 +168,7 @@ to the end result that you need.
 3. 再次利用\LaTeX\ 编译源文档
 
 4. 有时需要多运行一次\LaTeX\ 来完善文档内的超连接
-\end{CJK}} 
+\end{CJK}}
 In general that requires at least the
 following things to happen:
 \begin{itemize}
@@ -189,7 +194,7 @@ whenever you need to compile your document.\footnote{Not quite true:
 
 \subsection{A quick demonstration\label{neophyte:example}}
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 何不给出一个新手示例？假设读者已经安装一套tex发行版比如texlive，包含了所有编译需要的工具。下面第一步就是构建一个文献数据库文件。
-\end{CJK}} 
+\end{CJK}}
 Why not try a quick example? I assume for these purposes that you have
 a fully-equipped and functional \TeX\ system, and have installed the
 pre-requisites for \biblatex. This will be true on any of the standard
@@ -295,7 +300,8 @@ There is still quite a bit to learn, of course. To some extent it's up
 to you how you go from here, but the following chapters take what I
 think is a reasonably logical order.
 
-\section{For the more experienced}
+%\section{For the more experienced}
+\section{给有检验的用户}
 \label{expert}
 \marginpar{\begin{CJK}{UTF8}{gbsn}\footnotesize 给有经验的用户。
 \end{CJK}}
